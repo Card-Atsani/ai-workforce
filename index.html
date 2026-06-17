@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Workforce — ทีมงาน AI 50 ทักษะ สำหรับฟรีแลนซ์ไทย</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --bg:#0B0B0D;
+    --bg2:#121215;
+    --card:#16161A;
+    --line:#26262C;
+    --ink:#F2EEE9;
+    --muted:#9A968F;
+    --ember:#E8682C;
+    --ember-soft:#F0935E;
+    --glow:rgba(232,104,44,0.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans Thai','Space Grotesk',sans-serif;
+    line-height:1.7;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.04em}
+  .display{font-family:'Space Grotesk','IBM Plex Sans Thai',sans-serif}
+
+  /* ===== top bar ===== */
+  .nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(11,11,13,0.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:0.02em}
+  .brand .dot{width:10px;height:10px;border-radius:2px;background:var(--ember);box-shadow:0 0 16px var(--ember)}
+  .nav-cta{
+    font-family:'IBM Plex Sans Thai',sans-serif;
+    background:var(--ember);color:#fff;border:none;
+    padding:9px 18px;border-radius:8px;font-weight:600;font-size:14px;
+    cursor:pointer;text-decoration:none;transition:transform .15s, box-shadow .15s;
+  }
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px var(--glow)}
+
+  /* ===== hero ===== */
+  .hero{position:relative;padding:90px 0 70px;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;top:-200px;right:-150px;width:600px;height:600px;
+    background:radial-gradient(circle, var(--glow), transparent 65%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--ember-soft);
+    border:1px solid var(--line);border-radius:100px;padding:6px 14px;margin-bottom:28px;
+  }
+  .eyebrow .pulse{width:6px;height:6px;border-radius:50%;background:var(--ember);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  h1{
+    font-family:'Space Grotesk','IBM Plex Sans Thai',sans-serif;
+    font-size:clamp(38px,6.5vw,72px);line-height:1.05;font-weight:700;
+    letter-spacing:-0.02em;margin-bottom:24px;
+  }
+  h1 .accent{color:var(--ember);font-style:normal}
+  .sub{font-size:clamp(17px,2.3vw,21px);color:var(--muted);max-width:620px;margin-bottom:38px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn-primary{
+    background:var(--ember);color:#fff;border:none;
+    padding:15px 32px;border-radius:10px;font-weight:700;font-size:16px;
+    font-family:'IBM Plex Sans Thai',sans-serif;cursor:pointer;
+    text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+    transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 34px var(--glow)}
+  .btn-ghost{
+    color:var(--ink);border:1px solid var(--line);background:transparent;
+    padding:15px 26px;border-radius:10px;font-weight:600;font-size:15px;
+    font-family:'IBM Plex Sans Thai',sans-serif;cursor:pointer;text-decoration:none;transition:border-color .15s,color .15s;
+  }
+  .btn-ghost:hover{border-color:var(--ember);color:var(--ember-soft)}
+  .hero-meta{display:flex;gap:28px;margin-top:44px;flex-wrap:wrap}
+  .hero-meta .m{display:flex;flex-direction:column}
+  .hero-meta .n{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:var(--ink)}
+  .hero-meta .l{font-size:13px;color:var(--muted)}
+
+  /* ===== marquee of skills ===== */
+  .marquee{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:20px 0;overflow:hidden;background:var(--bg2);
+    white-space:nowrap;
+  }
+  .marquee-track{display:inline-block;animation:scroll 40s linear infinite}
+  .marquee-track span{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);
+    margin:0 24px;letter-spacing:0.04em;
+  }
+  .marquee-track span::before{content:"◆";color:var(--ember);margin-right:24px;font-size:8px;vertical-align:middle}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ===== sections ===== */
+  section{padding:80px 0}
+  .sec-label{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--ember-soft);margin-bottom:14px;
+  }
+  h2{
+    font-family:'Space Grotesk','IBM Plex Sans Thai',sans-serif;
+    font-size:clamp(28px,4.2vw,42px);line-height:1.15;font-weight:700;
+    letter-spacing:-0.01em;margin-bottom:18px;
+  }
+  .lead{font-size:18px;color:var(--muted);max-width:600px;margin-bottom:48px}
+
+  /* problem */
+  .problem{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .pain{padding:28px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  .pain .ic{font-size:26px;margin-bottom:14px}
+  .pain h3{font-size:18px;font-weight:600;margin-bottom:8px}
+  .pain p{font-size:15px;color:var(--muted)}
+
+  /* categories */
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+  .cat{
+    padding:30px;border:1px solid var(--line);border-radius:16px;
+    background:linear-gradient(160deg,var(--card),var(--bg2));
+    transition:transform .2s, border-color .2s;
+  }
+  .cat:hover{transform:translateY(-4px);border-color:var(--ember)}
+  .cat .num{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ember);margin-bottom:16px}
+  .cat h3{font-size:21px;font-weight:700;margin-bottom:10px;font-family:'Space Grotesk','IBM Plex Sans Thai',sans-serif}
+  .cat p{font-size:15px;color:var(--muted);margin-bottom:18px}
+  .cat ul{list-style:none}
+  .cat li{font-size:14px;color:var(--ink);padding:6px 0;padding-left:22px;position:relative}
+  .cat li::before{content:"→";position:absolute;left:0;color:var(--ember);font-weight:700}
+
+  /* offer / pricing */
+  .pricing{background:var(--bg2);border-top:1px solid var(--line)}
+  .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:20px}
+  .plan{
+    padding:36px 30px;border:1px solid var(--line);border-radius:18px;background:var(--card);
+    display:flex;flex-direction:column;position:relative;
+  }
+  .plan.featured{border-color:var(--ember);box-shadow:0 0 0 1px var(--ember), 0 20px 60px rgba(232,104,44,0.12)}
+  .plan .tag{
+    position:absolute;top:-12px;left:30px;background:var(--ember);color:#fff;
+    font-size:12px;font-weight:700;padding:4px 14px;border-radius:100px;
+    font-family:'IBM Plex Sans Thai',sans-serif;letter-spacing:0.02em;
+  }
+  .plan .pname{font-size:14px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;color:var(--ember-soft);margin-bottom:18px}
+  .plan .pdesc{font-size:14px;color:var(--muted);margin-bottom:24px;min-height:42px}
+  .plan .price{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+  .plan .price .now{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700}
+  .plan .price .was{font-size:18px;color:var(--muted);text-decoration:line-through}
+  .plan .save{font-size:13px;color:var(--ember-soft);margin-bottom:26px}
+  .plan ul{list-style:none;margin-bottom:30px;flex:1}
+  .plan li{font-size:15px;padding:9px 0;padding-left:28px;position:relative;border-bottom:1px solid var(--line)}
+  .plan li:last-child{border-bottom:none}
+  .plan li::before{content:"✓";position:absolute;left:0;color:var(--ember);font-weight:700}
+  .plan .buy{
+    background:var(--ember);color:#fff;border:none;text-align:center;
+    padding:14px;border-radius:10px;font-weight:700;font-size:16px;
+    font-family:'IBM Plex Sans Thai',sans-serif;cursor:pointer;text-decoration:none;
+    transition:transform .15s,box-shadow .15s;
+  }
+  .plan .buy:hover{transform:translateY(-2px);box-shadow:0 10px 30px var(--glow)}
+  .plan.ghost-buy .buy{background:transparent;border:1px solid var(--line);color:var(--ink)}
+  .plan.ghost-buy .buy:hover{border-color:var(--ember);color:var(--ember-soft)}
+
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;counter-reset:step}
+  .step{position:relative;padding-top:18px}
+  .step .sn{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;color:var(--line);line-height:1}
+  .step h3{font-size:18px;font-weight:600;margin:10px 0 8px}
+  .step p{font-size:15px;color:var(--muted)}
+
+  /* faq */
+  .faq{background:var(--bg2);border-top:1px solid var(--line)}
+  details{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:var(--card);overflow:hidden}
+  summary{
+    padding:20px 24px;font-weight:600;font-size:16px;cursor:pointer;
+    display:flex;justify-content:space-between;align-items:center;list-style:none;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary .plus{color:var(--ember);font-size:22px;font-weight:400;transition:transform .2s}
+  details[open] summary .plus{transform:rotate(45deg)}
+  details p{padding:0 24px 22px;color:var(--muted);font-size:15px}
+
+  /* final cta */
+  .final{text-align:center;padding:100px 0}
+  .final h2{margin-bottom:20px}
+  .final p{color:var(--muted);font-size:18px;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:50px 0 60px;background:var(--bg)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}
+  footer .fbrand{font-weight:700;font-size:18px;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  footer .fbrand .dot{width:9px;height:9px;border-radius:2px;background:var(--ember)}
+  footer p{font-size:14px;color:var(--muted)}
+  footer .built{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;color:var(--line);margin-top:18px;text-transform:uppercase}
+  footer a{color:var(--muted);text-decoration:none;font-size:14px;display:block;padding:4px 0;transition:color .15s}
+  footer a:hover{color:var(--ember-soft)}
+
+  @media(max-width:600px){
+    .hero{padding:60px 0 50px}
+    section{padding:60px 0}
+    .hero-meta{gap:20px}
+    .nav .brand span.full{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span><span class="full">AI Workforce</span></div>
+    <a href="#pricing" class="nav-cta">ดูแพ็กเกจ</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="pulse"></span>สำหรับฟรีแลนซ์ยุค AI</div>
+    <h1>ติดอาวุธให้ <span class="accent">AI</span><br>ทำงานเหมือนทีม<br>มืออาชีพของคุณ</h1>
+    <p class="sub">ไม่ต้องเขียน prompt เก่ง ไม่ต้องเป็นโปรแกรมเมอร์ — แค่บอก AI ว่าต้องการอะไร แล้วให้มันคุยลูกค้า ตั้งราคา เขียนข้อเสนอ และจัดการงานให้คุณ เหมือนมีทีมงาน 50 ทักษะอยู่ข้างกาย</p>
+    <div class="hero-cta">
+      <a href="#pricing" class="btn-primary">เริ่มใช้เลย →</a>
+      <a href="#categories" class="btn-ghost">ดูว่ามีอะไรบ้าง</a>
+    </div>
+    <div class="hero-meta">
+      <div class="m"><span class="n">50</span><span class="l">ทักษะพร้อมใช้</span></div>
+      <div class="m"><span class="n">8</span><span class="l">ทีมครบทุกด้าน</span></div>
+      <div class="m"><span class="n">2 นาที</span><span class="l">เริ่มใช้งานได้</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>คุยลูกค้า</span><span>ตั้งราคางาน</span><span>เขียน Proposal</span><span>หาลูกค้าใหม่</span><span>ทวงเงิน</span><span>เจรจาต่อรอง</span><span>จัดการงาน</span><span>เขียนอีเมล</span><span>ปิดดีล</span><span>วางแผนโปรเจกต์</span><span>เขียน Copywriting</span><span>ทำคอนเทนต์</span><span>สร้างแบรนด์</span><span>คิดต้นทุนกำไร</span><span>วางแผนภาษี</span><span>บริหารเงินสด</span><span>คุยลูกค้า</span><span>ตั้งราคางาน</span><span>เขียน Proposal</span><span>หาลูกค้าใหม่</span><span>ทวงเงิน</span><span>เจรจาต่อรอง</span><span>จัดการงาน</span><span>เขียนอีเมล</span><span>ปิดดีล</span><span>วางแผนโปรเจกต์</span><span>เขียน Copywriting</span><span>ทำคอนเทนต์</span><span>สร้างแบรนด์</span><span>คิดต้นทุนกำไร</span><span>วางแผนภาษี</span><span>บริหารเงินสด</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="wrap">
+    <div class="sec-label">ปัญหาที่ฟรีแลนซ์ทุกคนเจอ</div>
+    <h2>เก่งงาน แต่ติดเรื่องพวกนี้?</h2>
+    <p class="lead">งานฝีมือคุณดี แต่เวลาส่วนใหญ่หมดไปกับเรื่องที่ไม่ใช่งานหลัก</p>
+    <div class="pain-grid">
+      <div class="pain"><div class="ic">💬</div><h3>ไม่รู้จะตอบลูกค้ายังไง</h3><p>ลูกค้าทักมา ต่อราคา ขอแก้งานไม่จบ — ตอบผิดทีเสียงานทั้งดีล</p></div>
+      <div class="pain"><div class="ic">💸</div><h3>ตั้งราคาไม่เป็น</h3><p>กลัวแพงไปลูกค้าหนี ตั้งถูกไปก็ขาดทุน สุดท้ายขายตัวเองถูก</p></div>
+      <div class="pain"><div class="ic">📝</div><h3>เขียนข้อเสนอไม่โดน</h3><p>Proposal ดูไม่โปร ลูกค้าไม่เชื่อมั่น เสียงานให้คู่แข่งที่นำเสนอเก่งกว่า</p></div>
+      <div class="pain"><div class="ic">⏳</div><h3>เวลาหมดกับงานจุกจิก</h3><p>เขียนอีเมล ตามงาน ทวงเงิน วางแผน — กินเวลาที่ควรเอาไปทำงานจริง</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="wrap">
+    <div class="sec-label">สิ่งที่คุณจะได้</div>
+    <h2>ทีมงาน AI ครบทุกด้าน</h2>
+    <p class="lead">50 ทักษะ จัดเป็น 8 ทีม ครอบคลุมทุกเรื่องที่ฟรีแลนซ์ต้องเจอ</p>
+    <div class="cat-grid">
+      <div class="cat">
+        <div class="num">TEAM 01</div>
+        <h3>ทีมขายและลูกค้า</h3>
+        <p>เปลี่ยนคุณเป็นนักขายที่ลูกค้าไว้ใจ</p>
+        <ul>
+          <li>คุยลูกค้าและจับ requirement</li>
+          <li>เขียนข้อเสนอที่ปิดดีลได้</li>
+          <li>ตั้งราคาที่ไม่ขายตัวเองถูก</li>
+          <li>นำเสนองานให้น่าเชื่อ</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="num">TEAM 02</div>
+        <h3>ทีมสื่อสาร</h3>
+        <p>พูดและเขียนให้ได้ผลทุกสถานการณ์</p>
+        <ul>
+          <li>เขียนอีเมลและข้อความมืออาชีพ</li>
+          <li>รับมือบทสนทนายาก</li>
+          <li>เล่าเรื่องให้น่าจดจำ</li>
+          <li>ฟังลูกค้าให้เข้าใจลึก</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="num">TEAM 03</div>
+        <h3>ทีมบริหารงาน</h3>
+        <p>จัดการงานให้เสร็จตรงเวลา ไม่บานปลาย</p>
+        <ul>
+          <li>จัดลำดับความสำคัญงาน</li>
+          <li>ประเมินเวลาและราคางาน</li>
+          <li>โฟกัสทำงานสำคัญให้เสร็จ</li>
+          <li>ทบทวนและวางแผนสัปดาห์</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="num">TEAM 04</div>
+        <h3>ทีมเทคนิคและดีไซน์</h3>
+        <p>สำหรับสายเว็บ ดีไซน์ และพัฒนาระบบ</p>
+        <ul>
+          <li>ออกแบบ UI/UX อย่างมีหลักการ</li>
+          <li>เขียนและรีวิวโค้ด</li>
+          <li>วางสถาปัตยกรรมระบบ</li>
+          <li>แก้บั๊กอย่างเป็นระบบ</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="num">TEAM 05</div>
+        <h3>ทีมพัฒนาตัวเอง</h3>
+        <p>ดูแลใจและตัดสินใจเรื่องยากได้ดีขึ้น</p>
+        <ul>
+          <li>จัดการอารมณ์ในวันที่เครียด</li>
+          <li>ตัดสินใจเรื่องยากให้ชัด</li>
+          <li>สื่อสารข้ามวัฒนธรรม</li>
+          <li>โค้ชและพัฒนาคน</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="num">TEAM 06</div>
+        <h3>ทีมการตลาด</h3>
+        <p>ทำให้คนเห็น คนจำ และคนซื้อ</p>
+        <ul>
+          <li>เขียน copywriting ที่กระตุ้นให้ซื้อ</li>
+          <li>วางคอนเทนต์และแคปชั่นโซเชียล</li>
+          <li>สร้างแบรนด์ส่วนตัวให้โดดเด่น</li>
+          <li>หาจุดขายที่ต่างจากคู่แข่ง</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="num">TEAM 07</div>
+        <h3>ทีมบัญชีและการเงิน</h3>
+        <p>จัดการเงินให้เป็นระบบ ไม่ปวดหัวตอนสิ้นเดือน</p>
+        <ul>
+          <li>คิดต้นทุนและกำไรของแต่ละงาน</li>
+          <li>วางระบบเก็บรายรับ-รายจ่าย</li>
+          <li>เตรียมเอกสารและวางแผนภาษี</li>
+          <li>บริหารกระแสเงินสดให้ไม่ขาดมือ</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="num">TEAM 08</div>
+        <h3>ทีมเติบโตระยะยาว</h3>
+        <p>จากรับงานรายชิ้น สู่ธุรกิจที่ยั่งยืน</p>
+        <ul>
+          <li>รักษาลูกค้าให้กลับมาจ้างซ้ำ</li>
+          <li>ขยายธุรกิจและขึ้นราคาอย่างมั่นใจ</li>
+          <li>ใช้ AI ทำงานซ้ำๆ แบบอัตโนมัติ</li>
+          <li>สร้าง Portfolio ที่ขายตัวเองได้</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="num">BONUS</div>
+        <h3>50+ Prompts สำเร็จรูป</h3>
+        <p>ก็อปวางใช้ได้ทันที ไม่ต้องคิดเอง</p>
+        <ul>
+          <li>Prompts คุยลูกค้าทุกสถานการณ์</li>
+          <li>Prompts เขียน Proposal และใบเสนอราคา</li>
+          <li>Prompts หาลูกค้าและการตลาด</li>
+          <li>คู่มือใช้งานฉบับเข้าใจง่าย</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-label">แพ็กเกจ</div>
+    <h2>เลือกแพ็กที่ใช่สำหรับคุณ</h2>
+    <p class="lead">เริ่มจ่ายครั้งเดียว ใช้ได้ตลอด อัปเดตฟรี</p>
+    <div class="price-grid">
+
+      <div class="plan ghost-buy">
+        <div class="pname">Starter</div>
+        <div class="pdesc">เริ่มต้นด้วย Prompts สำเร็จรูปสำหรับฟรีแลนซ์</div>
+        <div class="price"><span class="now">฿199</span></div>
+        <div class="save">เริ่มต้นง่ายๆ คุ้มสุด</div>
+        <ul>
+          <li>50+ Prompts สำเร็จรูป</li>
+          <li>5 หมวด: ขาย/เขียน/ราคา/หาลูกค้า/จัดการ</li>
+          <li>คู่มือใช้งาน PDF</li>
+          <li>ใช้ได้กับ Claude / ChatGPT / Gemini</li>
+        </ul>
+        <a href="#" class="buy">เริ่มต้นเลย</a>
+      </div>
+
+      <div class="plan featured">
+        <div class="tag">แนะนำ · คุ้มที่สุด</div>
+        <div class="pname">Pro Toolkit</div>
+        <div class="pdesc">ทีมงาน AI ครบ 50 ทักษะ + Prompts ทั้งหมด</div>
+        <div class="price"><span class="now">฿990</span><span class="was">฿2,990</span></div>
+        <div class="save">ประหยัด ฿2,000 — โปรเปิดตัว</div>
+        <ul>
+          <li>ครบทุกอย่างในแพ็ก Starter</li>
+          <li>50 AI Skills พร้อมใช้ครบทุกทีม</li>
+          <li>วิธีติดตั้งใน Claude แบบ step-by-step</li>
+          <li>อัปเดต Skills ใหม่ฟรีตลอด</li>
+          <li>Support ผ่าน LINE เมื่อใช้ไม่เป็น</li>
+        </ul>
+        <a href="#" class="buy">รับโปรเลย →</a>
+      </div>
+
+      <div class="plan ghost-buy">
+        <div class="pname">Bundle +</div>
+        <div class="pdesc">Pro Toolkit + Notion Wellness Tracker</div>
+        <div class="price"><span class="now">฿1,290</span><span class="was">฿3,490</span></div>
+        <div class="save">ครบเครื่องทั้งงานและชีวิต</div>
+        <ul>
+          <li>ครบทุกอย่างในแพ็ก Pro Toolkit</li>
+          <li>Notion Wellness Tracker 11 หน้า</li>
+          <li>เทมเพลตจัดการชีวิตและสุขภาพ</li>
+          <li>อัปเดตทั้งสองสินค้าฟรี</li>
+        </ul>
+        <a href="#" class="buy">เลือกแพ็กนี้</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-label">ใช้งานง่ายใน 3 ขั้น</div>
+    <h2>เริ่มใช้ได้ใน 2 นาที</h2>
+    <p class="lead">ไม่ต้องเขียนโค้ด ไม่ต้องตั้งค่ายุ่งยาก</p>
+    <div class="steps">
+      <div class="step"><div class="sn">01</div><h3>ดาวน์โหลด</h3><p>หลังจ่ายเงิน รับไฟล์และลิงก์ทันที พร้อมคู่มือใช้งานละเอียด</p></div>
+      <div class="step"><div class="sn">02</div><h3>ติดตั้ง</h3><p>ทำตามขั้นตอนง่ายๆ ติดตั้ง Skills เข้า Claude หรือก็อป Prompts ไปใช้</p></div>
+      <div class="step"><div class="sn">03</div><h3>ใช้งานเลย</h3><p>บอก AI ว่าต้องการอะไร แล้วให้มันทำงานเหมือนทีมมืออาชีพให้คุณ</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="sec-label">คำถามที่พบบ่อย</div>
+    <h2>สงสัยอะไร เราตอบให้</h2>
+    <div style="margin-top:40px">
+      <details open><summary>Skill คืออะไร ต่างจาก Prompt ยังไง?<span class="plus">+</span></summary><p>Prompt คือข้อความสั่ง AI ครั้งเดียว ส่วน Skill คือชุดความรู้และวิธีคิดที่ทำให้ AI เชี่ยวชาญเรื่องนั้นๆ จริงๆ เหมือนจ้างผู้เชี่ยวชาญมาประจำ ไม่ใช่แค่ถามคำตอบคำ</p></details>
+      <details><summary>ใช้กับ Claude เวอร์ชันฟรีได้ไหม?<span class="plus">+</span></summary><p>Prompts ใช้ได้กับ AI ทุกตัวรวมถึงเวอร์ชันฟรี ส่วน Skills จะใช้ได้เต็มประสิทธิภาพกับ Claude (มีคู่มือติดตั้งให้ครบ)</p></details>
+      <details><summary>ต้องเขียนโค้ดเป็นไหม?<span class="plus">+</span></summary><p>ไม่ต้องเลย ทุกอย่างออกแบบมาให้คนทั่วไปใช้ได้ มีคู่มือ step-by-step พร้อมภาพประกอบ ทำตามได้ทันที</p></details>
+      <details><summary>ถ้าไม่พอใจ ขอคืนเงินได้ไหม?<span class="plus">+</span></summary><p>เนื่องจากเป็นสินค้าดิจิทัลที่ดาวน์โหลดได้ทันที กรุณาพิจารณารายละเอียดให้ครบก่อนสั่งซื้อ หากมีข้อสงสัยทักมาถามก่อนได้เสมอ</p></details>
+      <details><summary>ดาวน์โหลดยังไงหลังจ่ายเงิน?<span class="plus">+</span></summary><p>หลังชำระเงินผ่านระบบ คุณจะได้รับลิงก์ดาวน์โหลดทางอีเมลทันที และเข้าถึงไฟล์ได้ตลอด</p></details>
+      <details><summary>มี Support ไหม ถ้าใช้ไม่เป็น?<span class="plus">+</span></summary><p>แพ็ก Pro ขึ้นไปมี Support ผ่าน LINE Official ช่วยตอบทุกข้อสงสัยเรื่องการติดตั้งและใช้งาน</p></details>
+      <details><summary>Update ในอนาคตต้องจ่ายเพิ่มไหม?<span class="plus">+</span></summary><p>ไม่ต้องจ่ายเพิ่ม เมื่อซื้อแพ็ก Pro ขึ้นไป จะได้รับ Skills และ Prompts ใหม่ที่อัปเดตในอนาคตฟรีตลอด</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <h2>พร้อมให้ AI ทำงานแทนคุณหรือยัง?</h2>
+    <p>เริ่มวันนี้ ใช้เวลาทำงานน้อยลง รับงานได้มากขึ้น และดูเป็นมืออาชีพในสายตาลูกค้า</p>
+    <a href="#pricing" class="btn-primary">เริ่มใช้เลย →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="fbrand"><span class="dot"></span>AI Workforce</div>
+      <p>ทีมงาน AI สำหรับฟรีแลนซ์ไทย<br>ติดต่อผ่าน LINE Official: @yourline</p>
+      <div class="built">Built with Claude</div>
+    </div>
+    <div>
+      <a href="#categories">สิ่งที่ได้รับ</a>
+      <a href="#pricing">แพ็กเกจและราคา</a>
+      <a href="#faq">คำถามที่พบบ่อย</a>
+      <a href="#">ติดต่อเรา</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
